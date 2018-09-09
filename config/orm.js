@@ -1,6 +1,7 @@
+//impirt mysql connection 
 var connection = require("./connection.js");
 
-
+//function to create  question marks for create query
 function printQuestionMarks(num) {
     var arr = [];
   
@@ -18,21 +19,20 @@ function printQuestionMarks(num) {
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
       var value = ob[key];
-      // check to skip hidden properties
+      
       if (Object.hasOwnProperty.call(ob, key)) {
-        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+        
         if (typeof value === "string" && value.indexOf(" ") >= 0) {
           value = "'" + value + "'";
         }
-        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-        // e.g. {sleepy: true} => ["sleepy=true"]
         arr.push(key + "=" + value);
       }
     }
   
     // translate array of strings to a single comma-separated string
     return arr.toString();
-  }
+}
+//object for all mysql function
 var orm={
     all:function(tablename,cb){
         var query="select * from "+ tablename+";";
@@ -47,7 +47,7 @@ var orm={
         var query = "insert into "+ table +"("+col.toString()+")" ;
 
             query += "values (";
-            query += printQuestionMarks(vals.length);
+            query += printQuestionMarks(vals.length);//function with array length
             query += ")";
             console.log(query);
 
@@ -76,5 +76,5 @@ var orm={
 // orm.update("burgers",{"burger_name":"tuna burger"},"id="+4);
 // orm.all("burgers");
 
-
+//export the orm object for model (burger.js)
 module.exports = orm;

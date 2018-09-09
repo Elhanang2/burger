@@ -43,11 +43,13 @@ h3{
 .submitbutton{
     width:10%;
     margin:auto;
-    /* margin:20px; */
-    
-    
+    /* margin:20px; */ 
     
 }
 .submit{
     background-color: rgb(56, 129, 212);
+}
+#image{
+    display: block;
+    margin:auto;
 }

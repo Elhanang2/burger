@@ -1,5 +1,7 @@
+//imported from orm 
 var orm = require("../config/orm.js");
 
+//functions interact with the database
 var burger={
     all: function(cb){
         orm.all("burgers",function(res){
@@ -20,5 +22,5 @@ var burger={
 };
 
 
-
+//export the database function for the controller 
 module.exports=burger;
